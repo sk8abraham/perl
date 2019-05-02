@@ -17,7 +17,7 @@ close($fh);
 while (($k,$v) = each %dominios)
 {
     print "$k ==> \n";
-    foreach my $item (@{$dominios{$dominio}})
+    foreach my $item (@{$dominios{$k}})
     {
         print "$item\n";
     }
