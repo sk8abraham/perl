@@ -4,13 +4,12 @@ use GD;
 use GD::Graph::Data;
 use GD::Graph::mixed;
 
-# Read in the data from a file
-
+#Leer de archivo
 my $data = GD::Graph::Data->new( );
 $data->read(file => 'graph.txt');
 my $graph = new GD::Graph::mixed(900, 300) or die "Can't create graph!";
 
-# Set the general attributes
+#Atributos
 
 $graph->set(
         title             => "Ejemplo",
@@ -19,7 +18,7 @@ $graph->set(
         transparent       => 0,
 );
 
-# Set the attributes for the x-axis
+# Atributos en x
 
 $graph->set(
         x_label           => 'Lel',
@@ -32,20 +31,20 @@ $graph->set(
         y_all_ticks       => 1,
         y_number_format   => sub { 'Unidades'.int(shift); },
 );
-# Set the legend
+# Descripcion
 
 $graph->set_legend(undef, undef, 'Descripcion');
 $graph->set_legend_font(gdLargeFont);
 $graph->set(legend_placement => 'BL');
 
-# Plot the data
+# Graficar los datos
 
 my $gd = $graph->plot( $data );
 #my $logo = GD::Image->newFromPng('shempcorp.png');
 #my ($w, $h) = $logo->getBounds( );
 #$gd->copy(50, 25, 0, 0, 800, 600);
 
-# Write the PNG
+# Escribir el PNG
 open(my $png, '>', 'image.png');
 binmode $png;
 print $png $gd->png();
